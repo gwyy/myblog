@@ -1,0 +1,5 @@
+baseURL = 'http://liangtian.me/'
+languageCode = 'en-us'
+title = '梁天的博客'
+theme = 'hugo-theme-cleanwhite'
+reward = true
