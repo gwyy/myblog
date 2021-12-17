@@ -1,5 +1,121 @@
-baseURL = 'http://liangtian.me/'
-languageCode = 'en-us'
-title = '梁天的博客'
-theme = 'hugo-theme-cleanwhite'
-reward = true
+baseURL = 'http://liangtian.me/'  #url
+languageCode = 'zh-cn'  #语言
+title = '梁天的博客'  #博客标题
+theme = 'hugo-theme-cleanwhite' #博客皮肤
+
+[outputs]
+home = ["HTML", "RSS", "Algolia"]
+
+[params]
+  header_image = "img/home-bg-jeep.jpg"
+  SEOTitle = "梁天的博客 | Liangtian Blog"
+  description = "梁天，程序员, 开源爱好者 | 这里是 梁天 的博客，与你一起发现更大的世界。"
+  keyword = "梁天, liangtian, Liangtian , 梁天的网络日志, 梁天的博客, Liangtian Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
+  slogan = "路在脚下，心向远方"
+
+  image_404 = "img/404-bg.jpg"
+  title_404 = "你来到了没有知识的荒原 :("
+  omit_categories = false
+
+  # leancloud storage for page view counter
+  page_view_conter = false 
+  leancloud_app_id = ""
+  leancloud_app_key = ""
+
+  # algolia site search
+  algolia_search = true
+  algolia_appId = "NIENX3CRWP"
+  algolia_indexName = "myblog_prod"
+  algolia_apiKey = "1086c34378a0cca3fa5162356978712b"
+
+  # Sidebar settings
+  sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+  #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "img/zhaohuabing.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+  featured_tags = true 
+  featured_condition_size = 1 
+
+  # Baidu Analytics
+  ba_track_id = ""
+  
+  # We need a proxy to access Disqus api in China
+  # Follow https://github.com/zhaohuabing/disqus-php-api to set up your own disqus proxy
+  disqus_proxy = ""
+  disqus_site = ""
+
+  #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
+  reward = true 
+  # reward_guide = "如果这篇文章对你有用,请随意打赏" 
+
+  friends = true
+  bookmarks = false
+  about_me = true
+
+  # Include any custom CSS and/or JS files, url or relative to /static folder
+  #custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
+  #custom_js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+
+  [params.social]
+  rss            = true 
+  email          = "gwyyaaa@gmail.com"
+  #facebook      = "full profile url in facebook"
+  #googleplus    = "full profile url in googleplus"
+  #twitter       = "full profile url in twitter"
+  #linkedin       = "https://www.linkedin.com/in/yourlinkedinid"
+  #stackoverflow  = "https://stackoverflow.com/users/yourstackoverflowid"
+  #instagram     = "full profile url in instagram"
+  github         = "https://github.com/gwyy"
+  wechat         = "https://weibo.com/u/1747618715"
+#  medium         = "full profile url in medium"
+  #pinterest     = "full profile url in pinterest"
+  #reddit        = "full profile url in reddit"
+  #gitlab        = "full profile url in gitlab"
+  #mastodon      = "full profile url in mastodon"
+  #keybase       = "full profile url in keybase"
+  #xing          = "https://www.xing.com/profile/yourxingid"
+  #git           = "full profile url for git user"
+  
+  [[params.friend_link]]
+  title = "Marlon's Blog"
+  href =  "https://marlon.life/"
+
+  [[params.bookmark_link]]
+  title =  "Martin Fowler"
+  href =  "https://martinfowler.com"
+  [[params.bookmark_link]]
+  title = "ServiceMesher"
+  href =  "http://www.servicemesher.com"
+  [[params.bookmark_link]]
+  title =  "Pxhere"
+  href = "https://pxhere.com"
+  [[params.bookmark_link]]
+  title = "unsplash"
+  href = "https://unsplash.com"
+  
+  # [[params.addtional_menus]]
+  # title =  "BOOKS"
+  # href =  "/top/books/"
+  [[params.addtional_menus]]
+  title =  "ARCHIVE"
+  href =  "/top/archive/"
+  [[params.addtional_menus]]
+  title =  "ABOUT"
+  href =  "/top/about/"
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"] 
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 2
+    startLevel = 1
+  [markup.highlight]
+    style = "dracula"
