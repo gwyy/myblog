@@ -23,9 +23,6 @@
     <loc>http://liangtian.me/post/aaa/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://liangtian.me/categories/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://liangtian.me/tags/tag1/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
@@ -33,9 +30,6 @@
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://liangtian.me/tags/</loc>
-    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://liangtian.me/categories/tech/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://liangtian.me/2017/11/03/hello-world/</loc>
@@ -46,6 +40,8 @@
     <loc>http://liangtian.me/top/about/</loc>
   </url><url>
     <loc>http://liangtian.me/top/books/</loc>
+  </url><url>
+    <loc>http://liangtian.me/categories/</loc>
   </url><url>
     <loc>http://liangtian.me/top/archive/</loc>
   </url><url>

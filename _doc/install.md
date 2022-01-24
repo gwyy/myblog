@@ -85,3 +85,6 @@ hugo server
 如果使用nginx作为web服务配置root dir 指向public/ 即可；
 
 ```
+
+//参考其他皮肤
+https://github.com/Nov8nana/hugo-blog

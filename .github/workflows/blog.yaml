@@ -1,0 +1,23 @@
+name: Blog
+on:  #触发器
+  push:  #每次 main push的时候触发
+    branches: [ main ]
+jobs:
+  build:
+    name: Blog  #执行名称
+    runs-on: ubuntu-latest  #运行所需要的虚拟机环境
+    timeout-minutes: 60
+    steps:
+    - name: Build Blog
+      env:
+        USER: ${{ secrets.SERVER_USER }}
+        KEY: ${{ secrets.SERVER_KEY }}
+        DOMAIN: ${{ secrets.SERVER_DOMAIN }}
+      run: |
+        mkdir ~/.ssh
+        echo "$KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+        chmod 400 ~/.ssh/id_ed25519
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/id_ed25519
+        ssh-keyscan -H $DOMAIN >> ~/.ssh/known_hosts
+        ssh $USER@$DOMAIN "cd /root/wwwroot/demo1 && /bin/bash demo1.sh"

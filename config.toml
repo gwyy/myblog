@@ -7,7 +7,7 @@ theme = 'hugo-theme-cleanwhite' #博客皮肤
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/home-bg-jeep.jpg"
+  header_image = "img/home-bg-wind.jpg"
   SEOTitle = "梁天的博客 | Liangtian Blog"
   description = "梁天，程序员, 开源爱好者 | 这里是 梁天 的博客，与你一起发现更大的世界。"
   keyword = "梁天, liangtian, Liangtian , 梁天的网络日志, 梁天的博客, Liangtian Blog, 博客, 个人网站, 互联网, Web, 云原生, PaaS, Istio, Kubernetes, 微服务, Microservice"
@@ -29,9 +29,9 @@ home = ["HTML", "RSS", "Algolia"]
   algolia_apiKey = "1086c34378a0cca3fa5162356978712b"
 
   # Sidebar settings
-  sidebar_about_description = "Software Developer, Open Source Enthusiast and Life Adventurer"
+  sidebar_about_description = "开源爱好者"
   #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
-  sidebar_avatar = "img/zhaohuabing.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "img/favicon.png"      # use absolute URL, seeing it's used in both `/` and `/about/`
 
   featured_tags = true 
   featured_condition_size = 1 
@@ -43,6 +43,8 @@ home = ["HTML", "RSS", "Algolia"]
   # Follow https://github.com/zhaohuabing/disqus-php-api to set up your own disqus proxy
   disqus_proxy = ""
   disqus_site = ""
+
+  twikoo_env_id = "twikoo-2g1qe11qb544f70c"
 
   #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
   reward = true 
@@ -80,18 +82,18 @@ home = ["HTML", "RSS", "Algolia"]
   title = "Marlon's Blog"
   href =  "https://marlon.life/"
 
-  [[params.bookmark_link]]
-  title =  "Martin Fowler"
-  href =  "https://martinfowler.com"
-  [[params.bookmark_link]]
-  title = "ServiceMesher"
-  href =  "http://www.servicemesher.com"
-  [[params.bookmark_link]]
-  title =  "Pxhere"
-  href = "https://pxhere.com"
-  [[params.bookmark_link]]
-  title = "unsplash"
-  href = "https://unsplash.com"
+  # [[params.bookmark_link]]
+  # title =  "Martin Fowler"
+  # href =  "https://martinfowler.com"
+  # [[params.bookmark_link]]
+  # title = "ServiceMesher"
+  # href =  "http://www.servicemesher.com"
+  # [[params.bookmark_link]]
+  # title =  "Pxhere"
+  # href = "https://pxhere.com"
+  # [[params.bookmark_link]]
+  # title = "unsplash"
+  # href = "https://unsplash.com"
   
   # [[params.addtional_menus]]
   # title =  "BOOKS"
