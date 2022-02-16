@@ -1,4 +1,4 @@
-package myblog
+package main
 import (
 	"context"
 	"embed"
@@ -46,7 +46,7 @@ func main() {
 
 	go func() {
 		<-quit
-		l.Println("marlon.life is shutting down...")
+		l.Println("myblog is shutting down...")
 
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
@@ -58,7 +58,7 @@ func main() {
 		close(done)
 	}()
 
-	l.Printf("marlon.life is serving on http://%s", addr)
+	l.Printf("myblog is serving on http://%s", addr)
 	if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		l.Fatalf("cannot listen on %s, err: %v\n", addr, err)
 	}
