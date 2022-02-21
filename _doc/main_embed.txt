@@ -1,6 +1,8 @@
 package main
 import (
 	"context"
+	"embed"
+	"io/fs"
 	"log"
 	"net"
 	"net/http"
@@ -9,6 +11,9 @@ import (
 	"strings"
 	"time"
 )
+
+//go:embed public/*
+var public embed.FS
 
 
 const (
@@ -19,9 +24,13 @@ func main() {
 	l := log.New(os.Stdout, "", log.LstdFlags|log.Lshortfile|log.Lmsgprefix)
 	logger := logging(l)
 
+	fsys, err := fs.Sub(public, "public")
+	if err != nil {
+		l.Fatalf("cannot access sub file system: %v", err)
+	}
 
 	r := http.NewServeMux()
-	r.Handle("/", http.FileServer(http.Dir("public")))
+	r.Handle("/", http.FileServer(http.FS(fsys)))
 
 	s := &http.Server{
 		Addr:         addr,
@@ -44,7 +53,7 @@ func main() {
 
 		s.SetKeepAlivesEnabled(false)
 		if err := s.Shutdown(ctx); err != nil {
-			l.Fatalf("cannot gracefully shutdown liangtian.me: %v", err)
+			l.Fatalf("cannot gracefully shutdown marlon.life: %v", err)
 		}
 		close(done)
 	}()

@@ -13,11 +13,22 @@ git reset --hard origin/main
 #git reset --hard origin/master
 #cd ../../
 # Build the project.
-npm i
-hugo --minify
-npm run algolia
+/usr/bin/npm i
+/root/repository/go/bin/hugo --minify
+/usr/bin/npm run algolia
 
 # 编译代码
-go build -o blog
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 /usr/bin/go build -o blog
 
 # 生成docker镜像
+docker build  --tag myblog:latest .
+
+#更新docker-compose
+#第一次需要先创建网络
+docker-compose down
+docker-compose up -d
+
+#清理工作 删除tag为none的无用image
+docker images | grep none | awk '{print $3}' | xargs docker rmi
+docker system prune -f
+
