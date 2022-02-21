@@ -21,7 +21,7 @@ func main() {
 
 
 	r := http.NewServeMux()
-	r.Handle("/", http.FileServer(http.Dir("public")))
+	r.Handle("/", http.FileServer(http.Dir("/app/public")))
 
 	s := &http.Server{
 		Addr:         addr,
