@@ -7,6 +7,7 @@ services:
       - proxy-net
     labels:
       - "traefik.enable=true"
+      - "traefik.http.middlewares.test-http-cache.plugin.httpCache.maxTtl=600"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.routers.blog.middlewares=redirect-to-https@docker"
       - "traefik.http.routers.blog.rule=Host(`liangtian.me`)"
