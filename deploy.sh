@@ -13,9 +13,9 @@ git pull
 #git reset --hard origin/master
 #cd ../../
 # Build the project.
-/usr/bin/cnpm i
+/usr/local/bin/cnpm i
 /root/repository/go/bin/hugo --minify
-/usr/bin/cnpm run algolia
+/usr/local/bin/cnpm run algolia
 
 # 编译代码
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 /usr/bin/go build -o blog
