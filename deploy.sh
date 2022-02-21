@@ -7,7 +7,7 @@ rm -rf blog
 rm -rf node_modules
 rm -rf package-lock.json
 # github pull
-git reset --hard origin/main
+git pull
 #git pull themes
 #cd  themes/hugo-theme-cleanwhite
 #git reset --hard origin/master
