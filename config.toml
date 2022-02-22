@@ -95,14 +95,14 @@ home = ["HTML", "RSS", "Algolia"]
   # title = "unsplash"
   # href = "https://unsplash.com"
   
-  # [[params.addtional_menus]]
-  # title =  "BOOKS"
-  # href =  "/top/books/"
   [[params.addtional_menus]]
-  title =  "ARCHIVE"
+  title =  "分类"
+  href =  "/top/categorys/"
+  [[params.addtional_menus]]
+  title =  "文章"
   href =  "/top/archive/"
   [[params.addtional_menus]]
-  title =  "ABOUT"
+  title =  "关于我"
   href =  "/top/about/"
 
 [outputFormats.Algolia]
