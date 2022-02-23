@@ -1,7 +1,7 @@
-baseURL = 'https://liangtian.me/'  #url
-languageCode = "zh-cn"
-defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
-title = "梁天的博客"
+baseURL = "http://localhost:1313/"
+languageCode = "en"
+defaultContentLanguage = "en"                             # en / zh-cn / ... (This field determines which i18n file to use)
+title = "Even - A super concise theme for Hugo"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
@@ -18,10 +18,10 @@ hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否�
 paginate = 5                                              # 首页每页显示的文章数
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
-copyright = "苏ICP备11067663号-3"            # default: author.name ↓        # 默认为下面配置的author.name ↓
+copyright = ""            # default: author.name ↓        # 默认为下面配置的author.name ↓
 
 [author]                  # essential                     # 必需
-  name = "梁天"
+  name = "olOwOlo"
 
 [sitemap]                 # essential                     # 必需
   changefreq = "weekly"
@@ -59,9 +59,9 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
   gitRepo = ""
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = "云烟阁"        # default: the title value    # 默认值: 上面设置的title值
-  keywords = ["梁天", "liangtian", "Liangtian" , "梁天的网络日志", "梁天的博客", "Liangtian Blog", "博客", "互联网", "Web", "云原生", "Kubernetes", "微服务", "golang"]
-  description = "梁天，程序员, 开源爱好者 | 这里是 梁天 的博客，与你一起发现更大的世界。"
+  logoTitle = "Even"        # default: the title value    # 默认值: 上面设置的title值
+  keywords = ["Hugo", "theme","even"]
+  description = "Hugo theme even example site."
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archivePaginate = 50
@@ -143,19 +143,6 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
     owner = ""              # Your GitHub ID
     repo = ""               # The repo to store comments
 
-  [params.giscus]
-      data_repo = "gwyy/myblog"
-      data_repo_id = "R_kgDOGi9anA"
-      data_category = "Announcements"
-      data_category_id = "DIC_kwDOGi9anM4CBSV9"
-      data_mapping = "pathname"
-      data_reactions_enabled = "1"
-      data_emit_metadata = "0"
-      data-input-position="bottom"
-      data_theme = "light"
-      data_lang = "zh-CN"
-      crossorigin = "anonymous"
-
   [params.gitalk]           # Gitalk is a comment system based on GitHub issues. see https://github.com/gitalk/gitalk
     owner = ""              # Your GitHub ID
     repo = ""               # The repo to store comments
@@ -190,26 +177,26 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
     pagePV = true
 
   [params.reward]                                         # 文章打赏
-    enable = true
-    wechat = "/img/wechat_qrcode.png"           # 微信二维码
-    alipay = "/img/alipay-qrcode.png"           # 支付宝二维码
+    enable = false
+    wechat = "/path/to/your/wechat-qr-code.png"           # 微信二维码
+    alipay = "/path/to/your/alipay-qr-code.png"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
-    a-email = "mailto:gwyyaaa@email.com"
-    #b-stack-overflow = "http://localhost:1313"
-    #c-twitter = "http://localhost:1313"
-    #d-facebook = "http://localhost:1313"
-    #e-linkedin = "http://localhost:1313"
-    #f-google = "http://localhost:1313"
-    g-github = "https://github.com/gwyy"
-    h-weibo = "https://weibo.com/u/1747618715"
-    #i-zhihu = "http://localhost:1313"
-    #j-douban = "http://localhost:1313"
-    #k-pocket = "http://localhost:1313"
-    #l-tumblr = "http://localhost:1313"
-    #m-instagram = "http://localhost:1313"
-    #n-gitlab = "http://localhost:1313"
-    #o-bilibili = "http://localhost:1313"
+    a-email = "mailto:your@email.com"
+    b-stack-overflow = "http://localhost:1313"
+    c-twitter = "http://localhost:1313"
+    d-facebook = "http://localhost:1313"
+    e-linkedin = "http://localhost:1313"
+    f-google = "http://localhost:1313"
+    g-github = "http://localhost:1313"
+    h-weibo = "http://localhost:1313"
+    i-zhihu = "http://localhost:1313"
+    j-douban = "http://localhost:1313"
+    k-pocket = "http://localhost:1313"
+    l-tumblr = "http://localhost:1313"
+    m-instagram = "http://localhost:1313"
+    n-gitlab = "http://localhost:1313"
+    o-bilibili = "http://localhost:1313"
 
 # See https://gohugo.io/about/hugo-and-gdpr/
 [privacy]

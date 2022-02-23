@@ -4,8 +4,9 @@ echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 # 清理工作
 rm -rf public/
 rm -rf blog
-rm -rf node_modules
-rm -rf package-lock.json
+rm -rf resources/
+#rm -rf node_modules
+#rm -rf package-lock.json
 # github pull
 git fetch --all
 git reset --hard origin/main
@@ -15,9 +16,9 @@ git pull
 #git reset --hard origin/master
 #cd ../../
 # Build the project.
-/usr/local/bin/cnpm i
+#/usr/local/bin/cnpm i
 /root/repository/go/bin/hugo --minify
-/usr/local/bin/cnpm run algolia
+#/usr/local/bin/cnpm run algolia
 
 # 编译代码
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 /usr/bin/go build -o blog
