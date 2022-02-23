@@ -44,7 +44,21 @@ home = ["HTML", "RSS", "Algolia"]
   disqus_proxy = ""
   disqus_site = ""
 
-  twikoo_env_id = "twikoo-2g1qe11qb544f70c"
+  #twikoo_env_id = "twikoo-2g1qe11qb544f70c"
+
+  #giscus
+  [params.giscus]
+    data_repo = "gwyy/myblog"
+    data_repo_id = "R_kgDOGi9anA"
+    data_category = "Announcements"
+    data_category_id = "DIC_kwDOGi9anM4CBSV9"
+    data_mapping = "pathname"
+    data_reactions_enabled = "1"
+    data_emit_metadata = "0"
+    data-input-position="bottom"
+    data_theme = "light"
+    data_lang = "zh-CN"
+    crossorigin = "anonymous"
 
   #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
   reward = true 
@@ -96,8 +110,8 @@ home = ["HTML", "RSS", "Algolia"]
   # href = "https://unsplash.com"
   
   [[params.addtional_menus]]
-  title =  "分类"
-  href =  "/top/categorys/"
+#   title =  "分类"
+#   href =  "/top/categorys/"
   [[params.addtional_menus]]
   title =  "文章"
   href =  "/top/archive/"
