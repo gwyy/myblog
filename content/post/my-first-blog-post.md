@@ -28,7 +28,7 @@ categories:  ["life" ]
 
 #### 2、构建workflows
 代码仓库里新建一个 `.github` 文件夹。里面新建个 `workflows` 文件夹。然后建立一个空的  yaml 文件。作为每次触发github Actions的配置文件。至于github Actions 是什么 大家可以参考阮一峰大神的这篇文章 [GitHub Actions 入门教程](https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)  简单说下就是类似一个高级版的webhook, 可以push后做一些你指定的事情。 下面看下我的workflows 配置。
-```golang
+```shell
 name: Blog
 on:  #触发器
   push:  #每次 main push的时候触发
@@ -82,7 +82,7 @@ git pull
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 /usr/bin/go build -o blog
 ```
 脚本部分代码
-```golang
+```go
 r := http.NewServeMux()
 r.Handle("/", http.FileServer(http.Dir("/app/public")))
 s := &http.Server{
@@ -142,3 +142,4 @@ networks:
 到这里整个流程就完成了。这套方案的好处是基本上不依赖任何三方中间件。任意换一台服务器只要能够连接上github和dockerhub 基本上就能很快的跑起来我的博客。其实可以把编译工作的前半部分golang打包部分也做到github workflows里，这里就看大家怎么喜欢怎么来就好了。
 
 今天就先写这么多吧，有什么问题大家可以给我留言。😄
+
