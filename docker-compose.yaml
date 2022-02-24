@@ -10,11 +10,12 @@ services:
       - "traefik.http.middlewares.test-http-cache.plugin.httpCache.maxTtl=600"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.routers.blog.middlewares=redirect-to-https@docker"
-      - "traefik.http.routers.blog.rule=Host(`liangtian.me`)"
+      - "traefik.http.routers.blog.rule=Host(`liangtian.me`) || Host(`www.liangtian.me`)"
       - "traefik.http.routers.blog.entrypoints=websecure"
       - "traefik.http.routers.blog.tls=true"
       - "traefik.http.routers.blog.tls.certresolver=letsencryptresolver"
       - "traefik.http.services.blog.loadbalancer.server.port=3001"
+
 
 networks:
   proxy-net:
