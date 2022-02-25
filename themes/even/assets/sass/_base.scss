@@ -71,7 +71,6 @@ a {
 
 
 .content-wrapper {
-  -padding: $global-container-padding;
   display:flex;
   justify-content:space-between;
 }
@@ -106,6 +105,10 @@ a {
     color:#666;
 }
 @include max-screen() {
+  .content-wrapper {
+    display:block;
+    padding: $global-container-padding;
+  }
   .container {
     width: 100%;
     box-shadow: -1px -5px 5px $gray;
