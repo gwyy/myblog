@@ -1,5 +1,5 @@
 baseURL = 'https://liangtian.me/'  #url
-languageCode = "zh-cn"
+languageCode = "zh-CN"
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
 title = "梁天的博客"
 preserveTaxonomyNames = true
@@ -29,12 +29,12 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
   filename = "sitemap.xml"
 
 [[menu.main]]             # config your menu              # 配置目录
-  name = "Home"
+  name = "首页"
   weight = 10
   identifier = "home"
   url = "/"
 [[menu.main]]
-  name = "Archives"
+  name = "归档"
   weight = 20
   identifier = "archives"
   url = "/post/"
@@ -44,7 +44,7 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
   identifier = "tags"
   url = "/tags/"
 [[menu.main]]
-  name = "Categories"
+  name = "分类"
   weight = 40
   identifier = "categories"
   url = "/categories/"

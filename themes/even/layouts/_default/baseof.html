@@ -27,8 +27,14 @@
         <div id="content" class="content">
           {{ block "content" . }}{{ end }}
         </div>
-        {{ partial "comments.html" . }}
+        {{ if .IsHome }}
+        <div id="home_sidebar" class="home_sidebar">
+          {{ partial "home_sidebar.html" . }}
+        </div>
+        {{ end }}
+
       </div>
+      {{ partial "comments.html" . }}
     </main>
 
     {{ if not .Params.hideHeaderAndFooter -}}

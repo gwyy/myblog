@@ -1,0 +1,41 @@
+{{ if isset .Site.Taxonomies "categories" }}
+{{ if not (eq (len .Site.Taxonomies.categories) 0) }}
+<div class="home_side_list">
+    <p class="home_side_list_tit">{{ .Site.Params.Strings.Categories | default "分类" }}</p>
+    <ul class="home_side_list_ul">
+        {{ range $name, $items := .Site.Taxonomies.categories }}
+        <li><a href="{{ $.Site.BaseURL }}categories/{{ $name | urlize | lower }}" title="{{ $name }}">{{ $name }} <span>({{ len $items }})</span></a></li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+{{ end }}
+
+{{ if isset .Site.Taxonomies "tags" }}
+{{ if not (eq (len .Site.Taxonomies.tags) 0) }}
+<div class="home_side_list">
+    <p class="home_side_list_tit">{{ .Site.Params.Strings.Tags | default "Tags" }}</p>
+    <ul class="home_side_list_ul">
+        {{ range $name, $items := .Site.Taxonomies.tags }}
+        <li><a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize | lower }}" title="{{ $name }}">{{ $name }} <span>({{ len $items }})</span></a></li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+{{ end }}
+
+
+{{ if not (eq (len site.RegularPages) 0) }}
+<div class="home_side_list">
+    <p class="home_side_list_tit">{{ .Site.Params.Strings.Archive | default "归档" }}</p>
+    <ul class="home_side_list_ul">
+        {{ range $value := (where site.RegularPages "Type" "post").GroupByDate (.Site.Params.MonthFormat | default "2006年01月")}}
+        {{ $url := (index $value.Pages 0).Date.Format "2006-01" | urlize }}
+        <li class="home_side_list_ul_item">
+            <a class="home_side_list_ul_item_a" href="{{ $.Site.BaseURL }}post/#{{ $url }}">{{ .Key }}</a> <span class="home_side_list_ul_item_count">({{ len $value.Pages }})</span>
+        </li>
+        {{ end }}
+    </ul>
+
+</div>
+{{ end }}
