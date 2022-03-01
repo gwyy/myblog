@@ -68,7 +68,9 @@ a {
   margin: 0 auto;
   width: $global-body-width;
 }
-
+.article-content {
+  width:1024px;
+}
 
 .content-wrapper {
   display:flex;
