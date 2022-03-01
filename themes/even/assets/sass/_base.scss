@@ -69,7 +69,7 @@ a {
   width: $global-body-width;
 }
 .article-content {
-  width:1024px;
+  max-width:1024px;
 }
 
 .content-wrapper {
