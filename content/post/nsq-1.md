@@ -1,5 +1,5 @@
 ---
-title: "Neq 初识"
+title: "Nsq 初识"
 date: 2022-03-01T20:15:02+08:00
 lastmod: 2022-03-01T20:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
@@ -34,12 +34,15 @@ NSQ 最初是由 bitly 公司开源出来的一款简单易用的分布式消息
 
 ### 拓扑图
 Nsq 推荐通过他们相应的 nsqd 实例使用协同定位发布者，这意味着即使面对网络分区，消息也会被保存在本地，直到它们被一个消费者读取。更重要的是，发布者不必去发现其他的 nsqd 节点，他们总是可以向本地实例发布消息。
+
 ![拓扑图](https://img1.liangtian.me/myblog/imgs/nsq11.png?x-oss-process=style/small)
 
 首先，一个 producer 向 nsqd节点发送消息，要做到这点，首先要先打开一个连接（tcp/http），然后发送一个包含 topic 和消息主体的发布命令，topic 会将消息存储在内存的 memoryMsgQueue（优先）或者 磁盘上（backendQueue），通过 messagePump，topic 会复制这些消息并且 put 到在每一个连接 topic 的 channel 上。
+
 ![流转](https://img1.liangtian.me/myblog/imgs/nsq12.gif)
 
 每个 channel 的消息都会进行排队，直到一个 consumer 把他们消费，如果此队列超出了内存限制，消息将会被写入到磁盘中。nsqd 节点首先会向 nsqlookupd 广播他们的位置信息，一旦它们注册成功，consumer 将会从nsqlookupd 服务器节点上发现所有包含事件 topic 的 nsqd 节点。
+
 ![流转](https://img1.liangtian.me/myblog/imgs/nsq13.png?x-oss-process=style/small)
 
 然后每个 consumer 向每个 nsqd 主机进行订阅操作，用于表明 consumer 已经准备好接受消息了。
@@ -141,6 +144,7 @@ hello world 2
 
 ### 去中心化连接方式 nsqlookupd
 官方推荐使用连接`nsqlookupd`的方式，`nsqlookupd`用于做服务的注册和发现，这样可以做到去中心化。
+
 ![去中心化连接方式 nsqlookupd
 ](https://img1.liangtian.me/myblog/imgs/nsq15.png?x-oss-process=style/small)
 
