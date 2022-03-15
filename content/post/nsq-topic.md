@@ -14,24 +14,24 @@ author: "梁天"
 <!--more-->
 topic 管理着多个 channel 通过从 client 中获取消息，然后将消息发送到 channel 中传递给客户端.在 channel 初始化时会加载原有的 topic 并在最后统一执行 topic.Start(),新创建的 topic 会同步给 lookupd 后开始运行. nsqd 中通过创建创建多个 topic 来管理不同类别的频道.
 
-#### topic结构体：
+### topic结构体：
 ```go
 type Topic struct {
   // 64bit atomic vars need to be first for proper alignment on 32bit platforms
   // 这两个字段仅作统计信息,保证 32 位对其操作
   messageCount uint64  // 累计消息数
   messageBytes uint64// 累计消息体的字节数
-​
+
   sync.RWMutex  // 加锁，包括 putMessage
-​
+
   name              string // topic名，生产和消费时需要指定此名称
   channelMap        map[string]*Channel  // 保存每个channel name和channel指针的映射
   backend           BackendQueue    // 磁盘队列，当内存memoryMsgChan满时，写入硬盘队列
   memoryMsgChan     chan *Message    // 消息优先存入这个内存chan
   startChan         chan int    // 接收开始信号的 channel，调用 start 开始 topic 消息循环
-​
+
   exitChan          chan int    // 判断 topic 是否退出
-​
+
   // 在 select 的地方都要添加 exitChan
   // 除非使用 default 或者保证程序不会永远阻塞在 select 处,即可以退出循环
   // channel 更新时用来通知并更新消息循环中的 chan 数组
@@ -40,11 +40,11 @@ type Topic struct {
   waitGroup         util.WaitGroupWrapper
   exitFlag          int32     // topic 退出标识符
   idFactory         *guidFactory    // 生成 guid 的工厂方法
-​
+
   ephemeral      bool  // 该 topic 是否是临时 topic
   deleteCallback func(*Topic)   // topic 删除时的回调函数
   deleter        sync.Once   // 确保 deleteCallback 仅执行一次
-​
+
   paused    int32   // topic 是否暂停
   pauseChan chan int   // 改变 topic 暂停/运行状态的通道
   ctx *context  // topic 的上下文
@@ -52,7 +52,7 @@ type Topic struct {
 ```
 可以看到。topic 采用了 map + *Channel 来管理所有的channel. 并且也有 memoryMsgChan 和 backend 2个队列。
 
-#### 实例化Topic :
+### 实例化Topic :
 下面就是 topic 的创建流程,传入的参数参数包括,topicName,上下文环境,删除回调函数:
 ```go
 func NewTopic(topicName string, ctx *context, deleteCallback func(*Topic)) *Topic {
@@ -104,7 +104,7 @@ func NewTopic(topicName string, ctx *context, deleteCallback func(*Topic)) *Topi
   t.waitGroup.Wrap(t.messagePump)
   // 调用 Notify
   t.ctx.nsqd.Notify(t)
-​
+
   return t
 }
 ```
@@ -143,7 +143,7 @@ func (n *NSQD) Notify(v interface{}) {
 
 在执行持久化之前，`case n.notifyChan <- v:`语句向notifyChan传递消息，触发`lookupLoop`函数（nsqd/lookup.go中）接收`notifyChan`消息的部分， 从而实现向loopupd注册/取消注册响应的topic或channel。
 
-#### 消息写入Topic
+### 消息写入Topic
 客户端通过nsqd的HTTP API或TCP API向特定topic发送消息，nsqd的HTTP或TCP模块通过调用对应topic的`PutMessage`或`PutMessages`函数， 将消息投递到topic中。`PutMessage`或`PutMessages`函数都通过topic的私有函数put进行消息的投递，两个函数的区别仅在`PutMessage`只调用一次put， `PutMessages`遍历所有要投递的消息，对每条消息使用put函数进行投递。默认topic会优先往`memoryMsgChan` 队列内投递，如果内存队列已满，才会往磁盘队列写入，（临时的topic磁盘队列不做任何存储，数据直接丢弃）
 ```go
 func (t *Topic) put(m *Message) error {
@@ -155,7 +155,7 @@ func (t *Topic) put(m *Message) error {
     return nil
 }
 ```
-#### Start && messagePump 操作
+### Start && messagePump 操作
 topic的Start方法就是发送了个 startChan ，这里有个小技巧，nsq使用了select来发送这个消息，这样做的目的是如果start被并发调用了，第二个start会直接走到default里，什么都不做.
 
 那么这个Start函数都有哪里调用的呢。
@@ -196,7 +196,7 @@ for {
 处理当前topic的暂停和恢复
 
 监听当前topic的删除
-#### 消息投递
+### 消息投递
 ```go
 case msg = <-memoryMsgChan:
 case buf = <-backendChan:
@@ -229,7 +229,7 @@ for i, channel := range chans {
 ```
 随后是将消息投到每个channel中，首先先对消息进行复制操作，这里有个优化，对于第一次循环， 直接使用原消息进行发送以减少复制对象的开销，此后的循环将对消息进行复制。对于即时的消息， 直接调用channel的PutMessage函数进行投递，对于延迟的消息， 调用channel的`StartDeferredTimeout`函数进行投递。对于这两个函数的投递细节，后续博文中会详细分析。
 
-#### Topic下Channel的更新
+### Topic下Channel的更新
 ```go
 case <-t.channelUpdateChan:
     chans = chans[:0]
@@ -249,7 +249,7 @@ case <-t.channelUpdateChan:
 ```
 Channel的更新比较简单，从`channelMap`中取出每个channel，构成channel的数组以便后续进行消息的投递。 并且根据当前是否有channel以及该topic是否处于暂停状态来决定`memoryMsgChan和backendChan`是否为空。
 
-#### Topic的暂停和恢复
+### Topic的暂停和恢复
 ```go
 case pause := <-t.pauseChan:
     if pause || len(chans) == 0 {
@@ -263,11 +263,11 @@ case pause := <-t.pauseChan:
 ```
 这个case既处理topic的暂停也处理topic的恢复，pause变量决定其究竟是哪一种操作。 Topic的暂停和恢复其实和topic的更新很像，根据是否暂停以及是否有channel来决定是否分配memoryMsgChan和backendChan。
 
-#### messagePump函数的退出
+### messagePump函数的退出
 ```go
 case <-t.exitChan:
     goto exit
-​
+
 // ...
 exit:
     t.ctx.nsqd.logf("TOPIC(%s): closing ... messagePump", t.name)
@@ -276,38 +276,38 @@ exit:
 ```
 `messagePump`通过监听exitChan来获知topic是否被删除，当topic的删除时，跳转到函数的最后，输出日志后退出消息循环。
 
-#### Topic的关闭和删除
+### Topic的关闭和删除
 ```go
 // Delete empties the topic and all its channels and closes
 func (t *Topic) Delete() error {
     return t.exit(true)
 }
-​
+
 // Close persists all outstanding topic data and closes all its channels
 func (t *Topic) Close() error {
     return t.exit(false)
 }
-​
+
 func (t *Topic) exit(deleted bool) error {
     if !atomic.CompareAndSwapInt32(&t.exitFlag, 0, 1) {
         return errors.New("exiting")
     }
-​
+
     if deleted {
         t.ctx.nsqd.logf("TOPIC(%s): deleting", t.name)
-​
+
         // since we are explicitly deleting a topic (not just at system exit time)
         // de-register this from the lookupd
         t.ctx.nsqd.Notify(t)
     } else {
         t.ctx.nsqd.logf("TOPIC(%s): closing", t.name)
     }
-​
+
     close(t.exitChan)
-​
+
     // synchronize the close of messagePump()
     t.waitGroup.Wait()
-​
+
     if deleted {
         t.Lock()
         for _, channel := range t.channelMap {
@@ -315,12 +315,12 @@ func (t *Topic) exit(deleted bool) error {
             channel.Delete()
         }
         t.Unlock()
-​
+
         // empty the queue (deletes the backend files, too)
         t.Empty()
         return t.backend.Delete()
     }
-​
+
     // close all the channels
     for _, channel := range t.channelMap {
         err := channel.Close()
@@ -329,7 +329,7 @@ func (t *Topic) exit(deleted bool) error {
             t.ctx.nsqd.logf("ERROR: channel(%s) close - %s", channel.name, err)
         }
     }
-​
+
     // write anything leftover to disk
     t.flush()
     return t.backend.Close()

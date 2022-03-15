@@ -15,10 +15,12 @@ pygmentsUseClasses = true
 pygmentsCodefencesGuessSyntax = true
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
-paginate = 5                                              # 首页每页显示的文章数
+paginate = 10                                              # 首页每页显示的文章数
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = "苏ICP备11067663号-3"            # default: author.name ↓        # 默认为下面配置的author.name ↓
+
+
 
 [author]                  # essential                     # 必需
   name = "梁天"
@@ -73,7 +75,7 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
   dateFormatToUse = "2006-01-02"
 
   # show word count and read time ?                       # 是否显示字数统计与阅读时间
-  moreMeta = false
+  moreMeta = true
 
   # Syntax highlighting by highlight.js
   highlightInClient = false
@@ -224,7 +226,16 @@ copyright = "苏ICP备11067663号-3"            # default: author.name ↓      
     startLevel = 1
   [markup.goldmark.renderer]
     unsafe = true
-
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "dracula "
+    tabWidth = 4
 # 将下面这段配置取消注释可以使 hugo 生成 .md 文件
 # Uncomment these options to make hugo output .md files.
 #[mediaTypes]
