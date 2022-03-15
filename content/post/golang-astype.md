@@ -2,7 +2,7 @@
 title: "golang基础 - 自定义类型和类型别名(type)"
 date: 2021-11-09T10:49:52+08:00
 lastmod: 2021-11-09T10:49:52+08:00
-keywords: ["golang""]
+keywords: ["golang"]
 description: "Go语言通过type关键字定义自定义类型。自定义类型是全新的类型。
 "
 tags: ["golang"]
