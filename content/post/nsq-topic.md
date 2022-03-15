@@ -341,25 +341,36 @@ func (t *Topic) Exiting() bool {
 ```
 Topic关闭和删除的实现都是调用exit函数，只是传递的参数不同，删除时调用exit(true)，关闭时调用exit(false)。 exit函数进入时通过`atomic.CompareAndSwapInt32`函数判断当前是否正在退出，如果不是，则设置退出标记，对于已经在退出的topic，不再重复执行退出函数。 接着对于关闭操作，使用Notify函数通知lookupd以便其他nsqd获知该消息。
 
-随后，exit函数调用`close(t.exitChan)`和`t.waitGroup.Wait()`通知其他正在运行goroutine当前topic已经停止，并等待waitGroup中的goroutine结束运行。
+随后，exit函数调用`close(t.exitChan)`和`t.waitGroup.Wait()`通知其他正在运行goroutine当前topic已经停止，并等待`waitGroup`中的goroutine结束运行。
 
 最后，对于删除和关闭两种操作，执行不同的逻辑来完成最后的清理工作：
 
-对于删除操作，需要清空`channelMap`并删除所有channel，然后删除内存和磁盘中所有未投递的消息。最后关闭backend管理的的磁盘文件。
+1. 对于删除操作，需要清空`channelMap`并删除所有channel，然后删除内存和磁盘中所有未投递的消息。最后关闭backend管理的的磁盘文件。
 
-对于关闭操作，不清空`channelMap`，只是关闭所有的channel，使用flush函数将所有memoryMsgChan中未投递的消息用`writeMessageToBackend`保存到磁盘中。最后关闭backend管理的的磁盘文件。
+2. 对于关闭操作，不清空channelMap，只是关闭所有的channel，使用flush函数将所有`memoryMsgChan`中未投递的消息用`writeMessageToBackend`保存到磁盘中。最后关闭backend管理的的磁盘文件。
+
 ```go
-Topic关闭和删除的实现都是调用exit函数，只是传递的参数不同，删除时调用exit(true)，关闭时调用exit(false)。 exit函数进入时通过atomic.CompareAndSwapInt32函数判断当前是否正在退出，如果不是，则设置退出标记，对于已经在退出的topic，不再重复执行退出函数。 接着对于关闭操作，使用Notify函数通知lookupd以便其他nsqd获知该消息。
-
-随后，exit函数调用close(t.exitChan)和t.waitGroup.Wait()通知其他正在运行goroutine当前topic已经停止，并等待waitGroup中的goroutine结束运行。
-
-最后，对于删除和关闭两种操作，执行不同的逻辑来完成最后的清理工作：
-
-对于删除操作，需要清空channelMap并删除所有channel，然后删除内存和磁盘中所有未投递的消息。最后关闭backend管理的的磁盘文件。
-
-对于关闭操作，不清空channelMap，只是关闭所有的channel，使用flush函数将所有memoryMsgChan中未投递的消息用writeMessageToBackend保存到磁盘中。最后关闭backend管理的的磁盘文件。
+func (t *Topic) flush() error {
+    //...
+    for {
+        select {
+        case msg := <-t.memoryMsgChan:
+            err := writeMessageToBackend(&msgBuf, msg, t.backend)
+            if err != nil {
+                t.ctx.nsqd.logf(
+                    "ERROR: failed to write message to backend - %s", err)
+            }
+        default:
+            goto finish
+        }
+    }
+    
+finish:
+    return nil
+}
 ```
 `flush`函数也使用到了default分支来检测是否已经处理完全部消息。 由于此时已经没有生产者向memoryMsgChan提供消息，因此如果出现阻塞就表示消息已经处理完毕。
+
 ```go
 func (t *Topic) Empty() error {
     for {
