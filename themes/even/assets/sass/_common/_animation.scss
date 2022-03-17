@@ -25,6 +25,7 @@
   &:active,
   &:focus,
   &:hover {
+    color:$theme-color;
     &:before {
       right: 0;
       left: 0;
