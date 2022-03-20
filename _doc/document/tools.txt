@@ -1,6 +1,16 @@
 
-
+image
 ![流转](https://img1.liangtian.me/myblog/imgs/nsq13.png?x-oss-process=style/small)
 
+a连接
+[菜鸟教程](https://www.runoob.com)
+[](https://)
 
+
+生成新博文
 hugo new post/go-reverseproxy.md
+
+| 一个普通标题 | 一个普通标题 | 一个普通标题 |
+| ------ | ------ | ------ |
+| 短文本 | 中等文本 | 稍微长一点的文本 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |
