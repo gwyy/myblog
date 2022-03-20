@@ -39,3 +39,16 @@
 
 </div>
 {{ end }}
+
+
+<div class="home_side_list">
+    <p class="home_side_list_tit">友情链接</p>
+    <ul class="home_side_list_ul">
+        {{ range .Site.Params.friend_link }}
+        <li class="home_side_list_ul_item">
+            <a target="_blank" class="home_side_list_ul_item_a" href="{{.href | relLangURL}}">{{ .title }}</a>
+        </li>
+        {{ end }}
+    </ul>
+
+</div>
