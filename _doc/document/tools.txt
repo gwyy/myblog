@@ -1,4 +1,8 @@
 
+
+搭个车，我的技术博客，主要是 golang 方向 ( https://www.liangtian.me/)[https://www.liangtian.me/]
+
+
 image
 ![流转](https://img1.liangtian.me/myblog/imgs/nsq13.png?x-oss-process=style/small)
 
@@ -8,7 +12,7 @@ a连接
 
 
 生成新博文
-hugo new post/go-reverseproxy.md
+hugo new post/go-switch.md
 
 | 一个普通标题 | 一个普通标题 | 一个普通标题 |
 | ------ | ------ | ------ |

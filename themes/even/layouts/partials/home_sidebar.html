@@ -15,9 +15,9 @@
 {{ if not (eq (len .Site.Taxonomies.tags) 0) }}
 <div class="home_side_list">
     <p class="home_side_list_tit">{{ .Site.Params.Strings.Tags | default "Tags" }}</p>
-    <ul class="home_side_list_ul">
+    <ul class="home_side_list_ul_tag">
         {{ range $name, $items := .Site.Taxonomies.tags }}
-        <li><a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize | lower }}" title="{{ $name }}">{{ $name }}</a> <span>{{ len $items }}</span></li>
+        <li><a href="{{ $.Site.BaseURL }}tags/{{ $name | urlize | lower }}" title="{{ $name }}"><span class="tag">{{ $name }}</span> <span class="tag is-grey-lightest">{{ len $items }}</span></a> </li>
         {{ end }}
     </ul>
 </div>
