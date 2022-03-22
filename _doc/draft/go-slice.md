@@ -1,15 +1,5 @@
----
-title: "Go Slice的创建、添加、删除等操作和源码分析"
-date: 2022-03-20T13:48:24+08:00
-lastmod: 2022-03-20T13:48:24+08:00
-keywords: ["golang","golang源码分析","slice","array"]
-description: "Go Slice的创建、添加、删除等操作和slice源码分析"
-tags: ["golang","源码分析"]
-categories: ["golang","源码分析"]
-author: "梁天"
----
-本文从源码角度学习 golang slice 的创建、删除、扩容，深拷贝和slice的源码实现。
-<!--more-->
+本文从源码角度学习 golang slice 的创建、扩容，深拷贝的实现。
+
 
 
 golang 中的 *slice* 非常强大，让数组操作非常方便高效。在开发中不定长度表示的数组全部都是 *slice* 。但是很多同学对 *slice* 的模糊认识，造成认为golang中的数组是引用类型，结果就是在实际开发中碰到很多坑，以至于出现一些莫名奇妙的问题，数组中的数据丢失了。
@@ -46,7 +36,7 @@ for j:=0;j<1000;j++ {
 
 
 
-1.当cap < 1024 的时候 slice 每次扩容 * 2
+1.当cap < 1024 的时候 slice 每次扩容 * 2 
 
 2.当cap >= 1024 的时候， slice每次扩容 * 1.25
 
@@ -214,7 +204,7 @@ func modifySlice(s []int) {
 
 
 
-**总结**
+**总结** 
 
 1. 不要轻易的对切片append，如果新的切片容量比旧的大的话，需要进行growslice操作，新的地址开辟，数据拷贝
 2. 尽量对切片设置初始容量值以避免growslice，类似make([]int,0,100)
@@ -484,7 +474,8 @@ func growslice(et *_type, old slice, cap int) slice {
 
 ### slice的拷贝
 
-slice的拷贝也是针对切片提供的接口，是深拷贝，可以通过调用copy()函数将src切片中的值拷贝到dst切片中，通过该函数进行的切片拷贝后，针对dst切片进行的操作不会对src产生任何的影响，其拷贝长度是按照src与dst切片中最小的len长度去计算的，runtime.slicecopy源代码如下：
+slice的拷贝也是针对切片提供的接口，可以通过调用copy()函数将src切片中的值拷贝到dst切片中，通过该函数进行的切片拷贝后，针对dst切片进行的操作不会对src产生任何的影响，其拷贝长度是按照src与dst切片中最小的len长度去计算的，runtime.slicecopy源代码如下：
+
 
 ```go
 func slicecopy(toPtr unsafe.Pointer, toLen int, fmPtr unsafe.Pointer, fmLen int, width uintptr) int {
@@ -513,5 +504,49 @@ func slicecopy(toPtr unsafe.Pointer, toLen int, fmPtr unsafe.Pointer, fmLen int,
 }
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
