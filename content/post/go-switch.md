@@ -1,10 +1,10 @@
 ---
-title: "Golang switch的用法"
+title: "golang switch的用法"
 date: 2020-09-14T09:52:55+08:00
 lastmod: 2020-09-14T09:52:55+08:00
 keywords: ["golang","golang基础"]
 description: "Golang switch的用法"
-tags: ["golang"]
+tags: ["golang基础"]
 categories: ["golang"]
 author: "梁天"
 ---

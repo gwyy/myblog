@@ -1,11 +1,11 @@
 ---
-title: "Go Slice的创建、添加、删除等操作和源码分析"
+title: "golang Slice的创建、添加、删除等操作和源码分析"
 date: 2022-03-20T13:48:24+08:00
 lastmod: 2022-03-20T13:48:24+08:00
 keywords: ["golang","golang源码分析","slice","array"]
 description: "Go Slice的创建、添加、删除等操作和slice源码分析"
-tags: ["golang","源码分析"]
-categories: ["golang","源码分析"]
+tags: ["golang基础"]
+categories: ["golang"]
 author: "梁天"
 ---
 本文从源码角度学习 golang slice 的创建、删除、扩容，深拷贝和slice的源码实现。

@@ -1,10 +1,10 @@
 ---
-title: "Golang 几种负载均衡算法（随机，加权随机，轮询，一致性哈希）"
+title: "golang 几种负载均衡算法（随机，加权随机，轮询，一致性哈希）"
 date: 2022-03-20T14:20:15+08:00
 lastmod: 2022-03-20T14:20:15+08:00
 keywords: ["golang","微服务"]
 description: "Golang 实现几种负载均衡算法（随机，加权随机，轮询，一致性哈希）"
-tags: ["golang","微服务"]
+tags: ["微服务"]
 categories: ["golang","微服务"]
 author: "梁天"
 ---

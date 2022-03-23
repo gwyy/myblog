@@ -4,7 +4,7 @@ date: 2022-03-14T20:15:02+08:00
 lastmod: 2022-03-14T20:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
 description: "本篇文章就是由大到小。对于topic这一部分进行详尽的讲解。"
-tags: ["golang","nsq","源码分析"]
+tags: ["nsq","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---

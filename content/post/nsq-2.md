@@ -4,7 +4,7 @@ date: 2022-03-02T20:15:02+08:00
 lastmod: 2022-03-02T20:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
 description: "这篇文章我们就正式的开始分析nsq的代码了，上一篇给大家介绍了下nsq的特性和功能。再分析代码的同时，大家可以比对着我写的nsq精注版代码一遍看一遍调试。这样的效果更佳。"
-tags: ["golang","nsq","源码分析"]
+tags: ["nsq","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---

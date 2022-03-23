@@ -4,7 +4,7 @@ date: 2020-06-15T11:32:27+08:00
 lastmod: 2020-06-15T11:32:27+08:00
 keywords: ["golang","golang基础"]
 description: "golang 中的init函数"
-tags: ["golang"]
+tags: ["golang基础"]
 categories: ["golang"]
 author: "梁天"
 ---

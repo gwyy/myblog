@@ -4,7 +4,7 @@ date: 2022-03-15T13:15:02+08:00
 lastmod: 2022-03-15T13:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
 description: "nsq - 一条消息的生命周期（一)"
-tags: ["golang","nsq","源码分析"]
+tags: ["nsq","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---

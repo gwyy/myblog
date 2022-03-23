@@ -1,10 +1,10 @@
 ---
-title: "Nsq 初识"
+title: "nsq 初识"
 date: 2022-03-01T20:15:02+08:00
 lastmod: 2022-03-01T20:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
 description: "NSQ 最初是由 bitly 公司开源出来的一款简单易用的分布式消息中间件，它可用于大规模系统中的实时消息服务，并且每天能够处理数亿级别的消息。"
-tags: ["golang","nsq","源码分析"]
+tags: ["nsq","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---

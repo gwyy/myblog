@@ -4,7 +4,7 @@ date: 2022-03-15T10:15:02+08:00
 lastmod: 2022-03-15T10:15:02+08:00
 keywords: ["golang","nsq","源码分析"]
 description: "diskQueue是backendQueue接口的一个实现。backendQueue的作用是在实现在内存go channel缓冲区满的情况下对消息的处理的对象。 除了diskQueue外还有dummyBackendQueue实现了backendQueue接口。"
-tags: ["golang","nsq","源码分析"]
+tags: ["nsq","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---

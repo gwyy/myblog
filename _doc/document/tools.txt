@@ -4,12 +4,12 @@
 
 
 image
-![流转](https://img1.liangtian.me/myblog/imgs/nsq13.png?x-oss-process=style/small)
+![](https://img1.liangtian.me/myblog/imgs/.png?x-oss-process=style/small)
 
 a连接
 [菜鸟教程](https://www.runoob.com)
 [](https://)
-
+[]( )
 
 生成新博文
 hugo new post/go-switch.md

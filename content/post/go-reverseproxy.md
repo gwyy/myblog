@@ -5,7 +5,7 @@ lastmod: 2022-03-20T13:15:02+08:00
 keywords: ["golang","reverse-proxy","源码分析"]
 description: "ReverseProxy是golang自带的简单网络Daili工具，仅适合自己测试用，不过麻雀虽小五脏俱全，功能还是挺多的。今天我们一起分析下这个工具的源码。
 "
-tags: ["golang","源码分析"]
+tags: ["golang基础","源码分析"]
 categories: ["golang","源码分析"]
 author: "梁天"
 ---
