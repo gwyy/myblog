@@ -4,6 +4,7 @@
 
 .footer {
   margin-top: $footer-margin-top;
+  padding-bottom: 1em;
 
   @import "_footer/social";
   @import "_footer/copyright";
